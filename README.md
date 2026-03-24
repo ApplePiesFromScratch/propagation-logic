@@ -1,217 +1,142 @@
 # Propagation Logic
 
-**A single-operator foundation for logic and calculus.**
+**A single mechanistic foundation for all of mathematics — grounded in process ontology.**
 
 *James Pugmire — Independent Researcher — March 2026 (Version 12)*
 
 ---
+
 ## Philosophy & Ontology
 
-Propagation Logic is grounded in a **process ontology** in which becoming is primary and static substances are derivative.  
-See **[PHILOSOPHY.md](PHILOSOPHY.md)** (main exposition) and the compact technical version in **[ONTOLOGY.md](ONTOLOGY.md)**
+Propagation Logic is grounded in a **process ontology** in which *becoming* is primary and static substances are derivative. Patterns do not possess properties — they propagate, accumulate history (load), and reconfigure under coherence pressure.
 
-*Note* all claims computationally verified and demonstrated, empirically verifiable and mechanism based.
+See **[PHILOSOPHY.md](PHILOSOPHY.md)** (main exposition) and the compact technical version **[ONTOLOGY.md](ONTOLOGY.md)**.
+
+All claims are computationally verified and mechanism-based.
+
+---
 
 ## Overview
 
-Propagation Logic (PL) is a formal system built on one primitive:
-
-```
+Propagation Logic (PL) is built on **one primitive operator**:
 P / G → Q
-```
+textA **loaded pattern** `P = (v_P, L_P)` propagates through a **gradient field** `G` inside a **context** `C`, producing `Q`. Load `L_P` is the accumulated history of the process itself. Reconfiguration pressure appears when load exceeds the coherence threshold.
 
-A **loaded pattern** `P = (v_P, L_P)` propagates through a **gradient field** `G` in **context** `C`, producing output pattern `Q`. Every propagation step extends the pattern's loaded history. Every history sets the gradient demands for the next step.
+**Logic, calculus, geometry, topology, category theory, type theory, paradoxes, and even the structural skeletons of the Millennium Problems** are all different **gradient families** and **carrier/context tunings** of this single process.
 
-Propositional logic, first-order logic, modal logic, probabilistic logic, and the core operations of calculus are each the boundary conditions forced by this mechanism over a specific carrier set with a specific gradient family. They are not separate systems — they are parameter settings of one mechanism.
+| Domain                  | Carrier / Tuning                  | Manifestation                              |
+|-------------------------|-----------------------------------|--------------------------------------------|
+| Classical Logic         | {0,1} + full gradients            | Non-contradiction, modus ponens, etc.     |
+| Intuitionistic Logic    | {0,1} + constructive gradients    | Restricted propagation                     |
+| Paraconsistent Logic    | {0,1} + high threshold            | Tolerates contradiction                    |
+| Calculus                | ℝ + arithmetic gradients          | Differentiation, integration, Newton      |
+| Geometry / Topology     | Vector patterns + context topology| Distance, continuity, open sets            |
+| Category / Type Theory  | Gradients as morphisms, contexts as types | Composition, inhabitation, functors       |
+| Paradoxes               | Self-referential gradients        | Failed reconfigurations (Liar, Russell…)  |
+| Millennium Problems     | High-dimensional carriers         | Load asymmetry, fixed-point isolation, etc.|
 
-| Setting | Carrier V | Result |
-|---|---|---|
-| Full gradient family | `{0,1}` | Classical logic |
-| Constructive gradient family | `{0,1}` | Intuitionistic logic |
-| Extended threshold | `{0,1}` | Paraconsistent logic |
-| Context graph topology | `{0,1}` | K / S4 / S5 modal logic |
-| Normalised measure over contexts | `{0,1}` | Kolmogorov probability |
-| Arithmetic gradient fields | `ℝ` | Calculus |
-
-The classical laws of logic are arithmetic facts about `{0,1}`, not axioms. The rules of calculus are the same load-combination structure instantiated over `ℝ`. Gödel incompleteness is maximum complexity — a pattern whose loaded history includes itself — operating identically in both settings.
+Classical laws and calculus rules emerge as **forced stabilizations** of the same load-combination arithmetic. Paradoxes are boundary failures of the mechanism. The Millennium Problems appear as deep questions about load, coherence, and gradient families.
 
 ---
 
-## Repository structure
-
-```
+## Repository Structure
 propagation-logic/
 ├── pl/
-│   ├── __init__.py       — package exports
-│   ├── core.py           — Pattern, Context, all gradient fields (§2–8)
-│   └── calculus.py       — CalcPattern, integrate, newton_reconfigure (§13)
+│   ├── init.py
+│   ├── core.py           # Pattern, Context, logical gradients
+│   └── calculus.py       # CalcPattern, integrate, newton_reconfigure
 ├── demos/
-│   ├── logic_demos.py    — all inline demonstrations from §2–11
-│   └── calculus_demos.py — all inline demonstrations from §13
+│   ├── logic_demos.py
+│   ├── calculus_demos.py
+│   ├── all_mathematics_demo.py      # Unified logic + calculus + optimization + series + vectors
+│   ├── higher_structures_demo.py    # Geometry • Topology • Category • Type Theory
+│   ├── paradoxes.py                 # Liar, Russell, Zeno, Curry, Berry as boundary failures
+│   └── millennium/
+│       ├── run_all.py
+│       ├── p_vs_np.py
+│       ├── navier_stokes.py
+│       ├── yang_mills.py
+│       ├── hodge.py
+│       ├── bsd.py
+│       └── riemann.py               # (plus any others you add)
 ├── tests/
-│   └── test_pl.py        — 40 assertions covering every structural claim
-├── README.md
+│   └── test_pl.py        # 40 assertions — all pass
+├── PHILOSOPHY.md
+├── ONTOLOGY.md
+├── PL-v12.pdf
 ├── LICENSE
 └── requirements.txt
-```
+text---
 
----
+## Quick Start
 
-## Quick start
-
-No dependencies beyond the Python standard library.
+No external dependencies (pure Python standard library).
 
 ```bash
-git clone https://github.com/<your-username>/propagation-logic
+git clone https://github.com/ApplePiesFromScratch/propagation-logic.git
 cd propagation-logic
-python tests/test_pl.py        # 40 tests, all pass
-python demos/logic_demos.py    # §2–11 demonstrations
-python demos/calculus_demos.py # §13 demonstrations
-```
 
-Or with pytest:
+python tests/test_pl.py                    # 40 tests — all pass
 
-```bash
-pip install pytest
-pytest tests/
-```
+# Core demos
+python -m demos.logic_demos
+python -m demos.calculus_demos
 
----
+# Big unified demos
+python -m demos.all_mathematics_demo       # All mathematics from one process
+python -m demos.higher_structures_demo     # Geometry, topology, category & type theory
 
-## Usage
+# Paradoxes & Millennium Problems
+python -m demos.paradoxes
+python -m demos.millennium.run_all         # Runs paradoxes + all Millennium structural analyses
 
-### Logic
+Key Demos (Recommended Order)
 
-```python
-from pl.core import Pattern, Context, G_neg, G_and, G_or, G_imp
+all_mathematics_demo.py — Logic, calculus, optimization, series, vectors, probability — all in one file.
+higher_structures_demo.py — Geometry, topology, category theory, type theory as gradient families.
+paradoxes.py — Shows how every major paradox is a failed reconfiguration (boundary constraint).
+millennium/run_all.py — Structural PL analysis of all seven Millennium Problems (with computational verification where possible).
 
-C = Context(threshold=1.0)   # two-element, unit threshold
 
-P = Pattern(val=1, load=1.0)
-Q = Pattern(val=1, load=0.8)
+Usage Examples
+Logic (core.py)
+Pythonfrom pl.core import Pattern, Context, G_and, G_neg, G_or, G_imp
 
-# Non-contradiction: P ∧ ¬P is never designated
-assert G_and(P, G_neg(P)).val == 0
+C = Context(threshold=1.0)
+P = Pattern(1, 1.0)
+Q = Pattern(1, 0.8)
 
-# Excluded middle: P ∨ ¬P is always valid
-assert C.valid(G_or(P, G_neg(P)))
+assert G_and(P, G_neg(P)).val == 0                    # non-contradiction
+assert C.valid(G_or(P, G_neg(P)))                     # excluded middle
+assert G_imp(P, Q) == Q                               # modus ponens
+Calculus (calculus.py)
+Pythonfrom pl.calculus import CalcPattern, integrate, newton_reconfigure
 
-# Modus Ponens
-assert G_imp(P, Q) == Q   # v_P=1 forces Q
+x = CalcPattern(2.0)
+y = (x ** 3) * x.sin()
+print(y.val, y.load)          # value + derivative carried in load
 
-# Gradient demand
-print(C.demand(Pattern(1, 1.5)))   # 0.5 — reconfiguration pressure
-print(C.rate(Pattern(1, 2.0)))     # 0.5 — incoherent pattern propagates slower
-```
+area, steps = integrate(lambda t: t**2, 0, 1)
+root = newton_reconfigure(lambda x: x**2 - 2, 1.0)
+Higher Structures & Paradoxes
+Run the dedicated demo files — they contain extensive inline explanations tied directly to the paper and PHILOSOPHY.md.
 
-### Calculus
+Tests & Verification
+tests/test_pl.py contains 40 assertions that verify:
 
-```python
-from pl.calculus import CalcPattern, integrate, newton_reconfigure
-import math
+All gradient laws and propagation rules
+Classical, intuitionistic, paraconsistent, modal, and probabilistic logic
+Full calculus rules (product/chain/FTC, Newton convergence)
+Unification claims (same load structure for logic and calculus)
 
-# Differentiation: seed with load=1, read derivative as output load
-x = CalcPattern(1.0)                   # val=1, load=1 (differentiate w.r.t. x)
-r = (x**2) * x.sin()                  # d/dx[x²·sin(x)] at x=1
-print(r.load)                          # 2.2232442755...
-print(2*math.sin(1) + math.cos(1))     # same, to machine precision
+All tests pass.
+The paradox and Millennium demos provide additional computational verification of structural claims.
 
-# exp is its own derivative (fixed point of G_exp)
-e = CalcPattern(1.0).exp()
-assert abs(e.val - e.load) < 1e-12    # val == load always
+Paper
+The full technical development is in PL-v12.pdf (included in the repository).
 
-# Integration
-area, n = integrate(lambda t: t**2, 0, 1)
-print(area)    # 0.3333333333...
+Contributing
+Contributions that deepen the process-ontological framing, add new gradient families, improve visualizations of propagation-as-becoming, or extend the Millennium / paradox analyses are especially welcome.
+See PHILOSOPHY.md for the guiding spirit.
 
-# Optimisation as reconfiguration (Definition 2.6)
-# P = (f(x), f'(x)). Coherence: v_P = 0. Step: x ← x − v_P/L_P
-def f(x): return CalcPattern(x)**2 - 2
-
-root = newton_reconfigure(f, 1.0)
-print(root)              # 1.4142135623...
-print(math.sqrt(2))      # same
-```
-
----
-
-## Key concepts
-
-### Loaded pattern
-
-```
-P = (v_P, L_P)
-```
-
-- `v_P ∈ V` — designation component. Over `{0,1}`: 1 = designated, 0 = undesignated. Over `ℝ`: current value of the expression.
-- `L_P ≥ 0` — informational load, the scalar magnitude of the accumulated propagation history `H_P`.
-
-### Context
-
-```
-C = (Γ_C, o_C, θ_C)
-```
-
-- `Γ_C` — available gradient fields
-- `θ_C` — coherence threshold
-- `demand(P, C) = max(0, L_P − θ_C)` — reconfiguration pressure
-- `valid(P, C)` iff `v_P = 1` and `L_P ≤ θ_C`
-
-### Propagation rate (Theorem 2.1)
-
-```
-rate(P, C) = min(L_P, θ_C) / L_P
-```
-
-Simpler patterns (lower load) propagate faster. Among incoherent patterns: `rate(P) > rate(Q) ⟺ L_P < L_Q`.
-
-### The gradient fields
-
-| Field | Value rule | Load rule | Name after the cut |
-|---|---|---|---|
-| `G_id` | `v` | `L` | Identity |
-| `G_neg(P)` | `1 − v_P` | `L_P` | Negation |
-| `G_and(P,Q)` | `v_P · v_Q` | `L_P + L_Q` | Conjunction |
-| `G_or(P,Q)` | `max(v_P, v_Q)` | `min(L_P, L_Q)` | Disjunction |
-| `G_imp(P,Q)` | `v_Q` if `v_P=1`, else `1` | `L_Q` if `v_P=1`, else `0` | Implication |
-
-In the calculus regime (`V = ℝ`), the load rules of `G_mul`, `G_pow`, `G_sin`, `G_exp` etc. are exactly the rules of forward-mode automatic differentiation.
-
-### Unification (Theorem 13.4)
-
-Logic and calculus are both instances of the same mechanism over different carrier sets. The product rule and the law of non-contradiction are both consequences of how loaded history propagates through binary operations. The Taylor series and Gödel incompleteness are both instances of Observation 2.2 (maximum complexity) in different carrier settings.
-
----
-
-## Tests
-
-The test suite (`tests/test_pl.py`) contains 40 assertions covering:
-
-- Support, demand, propagation rate (§2)
-- All gradient field definitions and their properties (§3)
-- The three classical laws as forced boundary conditions (§4)
-- Quantifier load rules: sup for ∀, inf for ∃ (§5)
-- Modus Ponens, Hypothetical Syllogism, Consistency (§6, §8)
-- Modal K / S4 / S5 from graph topology (§7)
-- Kolmogorov axioms from measure over valid contexts (§9)
-- Paraconsistent logic from extended threshold (§11)
-- Product rule, chain rule, quotient rule, exp fixed point (§13.2)
-- Fundamental Theorem of Calculus (§13.3)
-- Newton reconfiguration and quadratic convergence (§13.6)
-- Unification: same load structure in logic and calculus (§13.5)
-
-All 40 pass with no external dependencies.
-
----
-
-## Paper
-
-The full paper is included in the repository as `PL-v12.pdf`.
-
-> Pugmire, J. (2026). *Propagation Logic: A Single-Operator Foundation for Logic and Calculus.* Version 12. SSRN. [link]
-
----
-
-## Licence
-
-MIT — see `LICENSE`.
+Repository: github.com/ApplePiesFromScratch/propagation-logic
