@@ -1,0 +1,5 @@
+# Propagation Logic has no external dependencies.
+# Everything runs on the Python standard library (math, dataclasses, random).
+#
+# Optional — for running the test suite with pytest:
+# pytest>=7.0
