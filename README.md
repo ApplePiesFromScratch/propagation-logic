@@ -89,15 +89,24 @@ x = CalcPattern(2.0)
 y = (x ** 3) * x.sin()
 print(y.val, y.load)          # value + derivative carried in load
 
-Domain,Carrier Set,Gradient Family Tuning,Resulting System
-Classical Logic,"{0,1}",Full Boolean gradients,"Non-contradiction, modus ponens"
-Intuitionistic Logic,"{0,1}",Constructive / restricted,No excluded middle
-Paraconsistent Logic,"{0,1}",High coherence threshold,Tolerates contradiction
-Calculus,ℝ,Arithmetic forward-mode,"Differentiation, integration, Newton"
-Geometry / Topology,Vector patterns,Distance & continuity gradients,"Euclidean distance, open sets"
-Category / Type Theory,Gradients as morphisms,Composition & inhabitation,"Functors, dependent types"
-Paradoxes,Self-referential,Load recursion,Failed reconfigurations
-Millennium Problems,High-dimensional,"Load asymmetry, fixed-point isolation",Structural analysis of open problems
+Key Concepts
+
+Pattern: The fundamental entity. P = (val, load) — val is the current designation, load is accumulated propagation history.
+Context: Defines the coherence threshold θ_C and available gradient fields.
+Gradient Field (G): Defines how patterns combine and how load accumulates.
+Reconfiguration Pressure: demand = max(0, load - θ_C) — the mechanistic driver of change.
+Propagation: P / G → Q — the single primitive operation.
+
+Gradient Families (Boundary Conditions)
+
+Classical Logic → {0,1} + full Boolean gradients → non-contradiction, modus ponens
+Intuitionistic Logic → {0,1} + constructive gradients → no excluded middle
+Paraconsistent Logic → {0,1} + high threshold → tolerates contradiction
+Calculus → ℝ + arithmetic forward-mode gradients → differentiation, integration, Newton
+Geometry / Topology → vector patterns + context topology → distance, continuity, open sets
+Category / Type Theory → gradients as morphisms, contexts as types → functors, dependent types
+Paradoxes → self-referential gradients → failed reconfigurations (Liar, Russell, etc.)
+Millennium Problems → high-dimensional carriers → load asymmetry, fixed-point isolation
 
 Paper
 Full technical development and formal proofs: PL-v12.pdf
