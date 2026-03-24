@@ -43,11 +43,14 @@ The classical laws of logic are arithmetic facts about {0,1}, not axioms. The ru
 propagation-logic/
 ├── pl/
 │   ├── core.py           # Pattern, Context, all gradient fields
-│   └── calculus.py       # CalcPattern, integrate, newton_reconfigure
+│   ├── calculus.py       # CalcPattern, integrate, newton_reconfigure
+│   └── dras.py           # DRAS v4 — De-Reification Axiom Standard
 ├── demos/
 │   ├── all_mathematics_demo.py      # Logic + calculus + optimization + series + vectors
 │   ├── higher_structures_demo.py    # Geometry • Topology • Category • Type Theory
-│   ├── paradoxes.py                 # Liar, Russell, Zeno, Curry, Berry as boundary failures
+│   ├── paradoxes.py                 # Liar, Russell, Zeno, Curry, Berry
+│   ├── dras_demo.py                 # DRAS v4 demonstration
+│   ├── finite_demo.py               # Explicit finite number theory
 │   ├── logic_demos.py
 │   ├── calculus_demos.py
 │   └── millennium/
@@ -79,6 +82,8 @@ python -m demos.calculus_demos
 # Big unified demos
 python -m demos.all_mathematics_demo             # All mathematics from one process
 python -m demos.higher_structures_demo           # Geometry, topology, category & type theory
+python -m demos.dras_demo                        # DRAS v4 demonstration
+python -m demos.finite_demo                      # Finite number theory enforcement
 
 # Paradoxes & Millennium Problems
 python -m demos.paradoxes
@@ -103,30 +108,34 @@ x = CalcPattern(2.0)
 y = (x ** 3) * x.sin()
 print(y.val, y.load)          # value + derivative carried in load
 
+DRAS Calculus (De-Reification Axiom Standard v4)
+DRAS is a full de-reified extension of Propagation Logic.
+
+Every quantity is a LoadedHistory α(E,x,t) — no constants exist.
+Universal loading formula: q(E) = q₀ / (1 ± β·ln(E/E₀))
+Explicit finite number theory: unbounded propagation (infinities) is rejected.
+β and E₀ propagate correctly through arithmetic operations.
+
+Run the demos:
+Bashpython -m demos.dras_demo      # Main DRAS demonstration
+python -m demos.finite_demo    # Shows rejection of unbounded load
+This extension maintains the single mechanistic core (P / G → Q) while fully satisfying the DRAS axioms of de-reification and finitism.
+
 Key Concepts
 
-Pattern: The fundamental entity. P = (val, load) — val is the current designation, load is accumulated propagation history.
-Context: Defines the coherence threshold θ_C and available gradient fields.
-Gradient Field (G): Defines how patterns combine and how load accumulates.
-Reconfiguration Pressure: demand = max(0, load - θ_C) — the mechanistic driver of change.
-Propagation: P / G → Q — the single primitive operation.
+## Key Concepts
 
-Gradient Families (Boundary Conditions)
+- **Pattern**: A propagating process. Written as `P = (val, load)`, where `val` is the transient designation (what appears as “value”) and `load` **is** the accumulated history of propagation itself. There are no static entities — only ongoing becoming.
+- **Context**: The environment of propagation, defined by the available gradient fields and a coherence threshold `θ_C`.
+- **Gradient Field** (`G`): The rule governing how one pattern propagates into another (`P / G → Q`).
+- **Reconfiguration Pressure**: `demand = max(0, load - θ_C)` — the intrinsic driver of change when coherence is exceeded.
+- **Propagation**: The single primitive operation `P / G → Q`. All structure (logic, calculus, geometry, etc.) emerges from this process under different boundary conditions.
+- **Finite Number Theory**: All propagation is strictly bounded. Unbounded load growth (infinities) is disallowed because it would violate coherence. When load approaches the finite limit, reconfiguration must occur.
 
-Classical Logic → {0,1} + full Boolean gradients → non-contradiction, modus ponens
-Intuitionistic Logic → {0,1} + constructive gradients → no excluded middle
-Paraconsistent Logic → {0,1} + high threshold → tolerates contradiction
-Calculus → ℝ + arithmetic forward-mode gradients → differentiation, integration, Newton
-Geometry / Topology → vector patterns + context topology → distance, continuity, open sets
-Category / Type Theory → gradients as morphisms, contexts as types → functors, dependent types
-Paradoxes → self-referential gradients → failed reconfigurations (Liar, Russell, etc.)
-Millennium Problems → high-dimensional carriers → load asymmetry, fixed-point isolation
-
-
+No substances. No eternal objects. Only processes in ongoing relation.
 Paper
 The full paper is included in the repository as PL-v12.pdf.
 
-Contributions that deepen the process-ontological framing are especially welcome.
+Contributions that deepen the process-ontological framing or extend DRAS are especially welcome.
 
 Repository: https://github.com/ApplePiesFromScratch/propagation-logic
-A single mechanistic process — load as living history, coherence pressure as driver of change — from which all of mathematics emerges.
