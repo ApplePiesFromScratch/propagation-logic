@@ -9,6 +9,7 @@
 
 Propagation Logic is grounded in a **process ontology** in which becoming is primary and static substances are derivative.  
 See **[PHILOSOPHY.md](PHILOSOPHY.md)** (main exposition) and the compact technical version in **[ONTOLOGY.md](ONTOLOGY.md)**
+
 *Note* all claims computationally verified and demonstrated, empirically verifiable and mechanism based.
 
 ## Overview
