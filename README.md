@@ -2,7 +2,7 @@
 
 **A single-operator foundation for logic and calculus.**
 
-*James Pugmire — Independent Researcher — April 2026 (Version 12)*
+*James Pugmire — Independent Researcher — March 2026 (Version 12)*
 
 ---
 
