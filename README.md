@@ -5,6 +5,10 @@
 *James Pugmire — Independent Researcher — March 2026 (Version 12)*
 
 ---
+## Philosophy & Ontology
+
+Propagation Logic is grounded in a **process ontology** in which becoming is primary and static substances are derivative.  
+See **[ONTOLOGY.md](PHILOSOPHY.md)** for the full philosophical framing.
 
 ## Overview
 
