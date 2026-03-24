@@ -27,16 +27,18 @@ Logic, calculus, geometry, topology, category theory, type theory, paradoxes, an
 ---
 
 ## Repository Structure
+
+```bash
 propagation-logic/
 ├── pl/
-│   ├── core.py
-│   └── calculus.py
+│   ├── core.py           # Pattern, Context, logical gradients
+│   └── calculus.py       # CalcPattern, integrate, newton_reconfigure
 ├── demos/
+│   ├── all_mathematics_demo.py      # Logic + calculus + optimization + series
+│   ├── higher_structures_demo.py    # Geometry, topology, category & type theory
+│   ├── paradoxes.py                 # All major paradoxes as boundary failures
 │   ├── logic_demos.py
 │   ├── calculus_demos.py
-│   ├── all_mathematics_demo.py          # Logic + calculus + optimization + series + vectors
-│   ├── higher_structures_demo.py        # Geometry • Topology • Category • Type Theory
-│   ├── paradoxes.py                     # Liar, Russell, Zeno, Curry, Berry as boundary failures
 │   └── millennium/
 │       ├── run_all.py
 │       ├── p_vs_np.py
@@ -45,11 +47,13 @@ propagation-logic/
 │       ├── hodge.py
 │       ├── bsd.py
 │       └── riemann.py
-├── tests/test_pl.py
+├── tests/
+│   └── test_pl.py        # 40 assertions — all pass
 ├── PHILOSOPHY.md
 ├── ONTOLOGY.md
 ├── PL-v12.pdf
-└── LICENSE
+├── LICENSE
+└── requirements.txt
 
 ---
 
