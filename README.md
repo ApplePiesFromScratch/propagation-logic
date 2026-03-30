@@ -48,6 +48,7 @@ propagation-logic/
 │   ├── dras_demo.py
 │   ├── finite_demo.py
 │   ├── mathesis_demo.py
+|   ├── grammar-as-propagation.py
 │   └── millennium/              # Structural analyses of the 7 Millennium Problems
 ├── explorations/                # Interactive visual explorations (Mathesis Universalis)
 │   ├── mathesis_explorer.jsx    # Fixed points, sin/cos emergence, e/π/φ, logistic map,
