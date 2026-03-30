@@ -18,6 +18,17 @@ Reconfiguration pressure (`demand = max(0, L - θ)`) drives all change when cohe
 
 No separate axioms. No eternal objects. Only processes in ongoing relation.
 
+### Gradient Families
+
+| Setting                          | Carrier V   | Result                                      |
+|----------------------------------|-------------|---------------------------------------------|
+| Full gradient family             | {0,1}       | Classical logic                             |
+| Constructive gradient family     | {0,1}       | Intuitionistic logic                        |
+| Extended threshold               | {0,1}       | Paraconsistent logic                        |
+| Context graph topology           | {0,1}       | K / S4 / S5 modal logic                     |
+| Normalised measure over contexts | {0,1}       | Kolmogorov probability                      |
+| Arithmetic gradient fields       | ℝ           | Calculus                                    |
+
 ---
 
 ## Repository Structure
