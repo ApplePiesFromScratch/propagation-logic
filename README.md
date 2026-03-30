@@ -49,11 +49,10 @@ propagation-logic/
 │   ├── PHILOSOPHY.md
 │   ├── ONTOLOGY.md
 │   ├── mathesis_universalis.pdf # Full long-form paper
-|   └──PL-v12.pdf # Core technical paper (v12)
+│   └──PL-v12.pdf                   # Core technical paper (v12)
 ├── LICENSE
 ├── README.md
 └── requirements.txt             # Pure standard library (no external deps)
-
 Quick Start
 Bashgit clone https://github.com/ApplePiesFromScratch/propagation-logic.git
 cd propagation-logic
