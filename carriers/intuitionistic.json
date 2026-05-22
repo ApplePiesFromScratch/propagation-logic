@@ -1,0 +1,39 @@
+{
+  "name": "Intuitionistic Logic",
+  "version": "1.0",
+  "author": "pugmire",
+  "parameters": {
+    "V": "{0, 1}",
+    "Gamma": "constructive",
+    "theta": 1.0
+  },
+  "forced_laws": {
+    "LNC": {
+      "forced": true,
+      "proof": "v*(1-v)=0 still holds \u2014 carrier arithmetic unchanged"
+    },
+    "LEM": {
+      "forced": false,
+      "note": "Gor removed from Gamma. No path to P-or-not-P = 1."
+    },
+    "DNE": {
+      "forced": false,
+      "note": "Depends on LEM. Unreachable."
+    },
+    "ex_falso": {
+      "forced": true
+    },
+    "leibniz": {
+      "forced": false
+    },
+    "FTC": {
+      "forced": false
+    }
+  },
+  "explicit_failures": [
+    "Cannot derive P-or-not-P for infinite domains",
+    "Cannot assume existence without construction"
+  ],
+  "falsification_test": "tests/test_carriers.py::test_intuitionistic",
+  "notes": "Classical minus Gor. Brouwer-Heyting-Kolmogorov: proof = construction."
+}

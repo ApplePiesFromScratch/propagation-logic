@@ -1,0 +1,39 @@
+{
+  "name": "Modal Logic S5",
+  "version": "1.0",
+  "author": "pugmire",
+  "parameters": {
+    "V": "{0, 1}",
+    "Gamma": "modal_equivalence_relation",
+    "theta": 1.0
+  },
+  "forced_laws": {
+    "LNC": {
+      "forced": true
+    },
+    "LEM": {
+      "forced": true
+    },
+    "T_axiom": {
+      "forced": true,
+      "proof": "Reflexive accessibility"
+    },
+    "4_axiom": {
+      "forced": true,
+      "proof": "Transitive accessibility"
+    },
+    "5_axiom": {
+      "forced": true,
+      "proof": "Symmetric accessibility: \u25c7P \u2192 \u25a1\u25c7P"
+    },
+    "B_axiom": {
+      "forced": true,
+      "proof": "Symmetric: P \u2192 \u25a1\u25c7P"
+    }
+  },
+  "explicit_failures": [
+    "Over-collapses necessity and possibility in non-equivalence frames"
+  ],
+  "falsification_test": "tests/test_carriers.py::test_modal_s5",
+  "notes": "S4 + symmetric accessibility. All worlds mutually accessible."
+}

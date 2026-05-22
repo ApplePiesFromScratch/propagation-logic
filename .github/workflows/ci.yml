@@ -1,0 +1,39 @@
+name: PL Test Suite
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: pip install pytest
+
+    - name: Run core framework (pl_unified.py)
+      run: python core/pl_unified.py
+
+    - name: Run pytest suite
+      run: pytest tests/ -v --tb=short
+
+    - name: Validate all carrier definitions
+      run: |
+        for f in carriers/*.json; do
+          if [ "$f" != "carriers/_schema.json" ] && [ "$f" != "carriers/_template.json" ]; then
+            python core/carrier_tool.py --validate "$f"
+          fi
+        done

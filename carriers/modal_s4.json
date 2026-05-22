@@ -1,0 +1,36 @@
+{
+  "name": "Modal Logic S4",
+  "version": "1.0",
+  "author": "pugmire",
+  "parameters": {
+    "V": "{0, 1}",
+    "Gamma": "modal_reflexive_transitive",
+    "theta": 1.0
+  },
+  "forced_laws": {
+    "LNC": {
+      "forced": true
+    },
+    "LEM": {
+      "forced": true
+    },
+    "T_axiom": {
+      "forced": true,
+      "proof": "Reflexive accessibility: \u25a1P \u2192 P"
+    },
+    "4_axiom": {
+      "forced": true,
+      "proof": "Transitive accessibility: \u25a1P \u2192 \u25a1\u25a1P"
+    },
+    "5_axiom": {
+      "forced": false,
+      "note": "Requires symmetric accessibility (S5 not S4)"
+    }
+  },
+  "explicit_failures": [
+    "\u25c7\u25a1P \u2192 \u25a1P fails (not S5)",
+    "Cannot reason about possibility across non-symmetric worlds"
+  ],
+  "falsification_test": "tests/test_carriers.py::test_modal_s4",
+  "notes": "Kripke (1963). Accessibility relation: reflexive + transitive."
+}

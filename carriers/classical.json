@@ -1,0 +1,44 @@
+{
+  "name": "Classical Logic",
+  "version": "1.0",
+  "author": "pugmire",
+  "parameters": {
+    "V": "{0, 1}",
+    "Gamma": "full_bool",
+    "theta": 1.0
+  },
+  "forced_laws": {
+    "LNC": {
+      "forced": true,
+      "proof": "v*(1-v)=0 for all v in {0,1}. v=0: 0. v=1: 0."
+    },
+    "LEM": {
+      "forced": true,
+      "proof": "max(v,1-v)=1 for all v in {0,1}. v=0: 1. v=1: 1."
+    },
+    "DNE": {
+      "forced": true,
+      "proof": "1-(1-v)=v. Involution."
+    },
+    "ex_falso": {
+      "forced": true,
+      "proof": "From (v=1 AND v=0): impossible in {0,1}."
+    },
+    "leibniz": {
+      "forced": false
+    },
+    "FTC": {
+      "forced": false
+    },
+    "kolmogorov": {
+      "forced": false
+    }
+  },
+  "explicit_failures": [
+    "Liar paradox: v=1-v has no fixed point in {0,1}",
+    "Russell's paradox: self-referential set membership collapses level structure",
+    "Yablo sequence: infinite construction cost, no seed state"
+  ],
+  "falsification_test": "tests/test_carriers.py::test_classical",
+  "notes": "The two-element carrier. LNC and LEM are arithmetic facts, not axioms."
+}

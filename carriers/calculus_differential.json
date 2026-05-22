@@ -1,0 +1,38 @@
+{
+  "name": "Differential Calculus",
+  "version": "1.0",
+  "author": "pugmire",
+  "parameters": {
+    "V": "R",
+    "Gamma": "differential",
+    "theta": 0.0
+  },
+  "forced_laws": {
+    "leibniz_product_rule": {
+      "forced": true,
+      "proof": "D(f*g)=f*Dg+g*Df. Forced by eps^2=0 in dual numbers."
+    },
+    "chain_rule": {
+      "forced": true,
+      "proof": "D(f(g(x)))=Df(g(x))*Dg(x). Composition of propagation."
+    },
+    "FTC": {
+      "forced": true,
+      "proof": "Gdiff and Gint are opposite gradients: Gdiff*Gint=Gid. Same as DNE in {0,1}."
+    },
+    "LNC": {
+      "forced": false,
+      "note": "Not applicable in continuous real carrier"
+    },
+    "LEM": {
+      "forced": false,
+      "note": "Not applicable \u2014 'contradiction' is a zero-crossing, not a type error"
+    }
+  },
+  "explicit_failures": [
+    "Cannot differentiate non-continuous functions at discontinuities",
+    "Godel incompleteness: PA over reals still has unprovable statements"
+  ],
+  "falsification_test": "tests/test_carriers.py::test_calculus",
+  "notes": "Logic and calculus are the same mechanism. V=R with differential gradient family."
+}

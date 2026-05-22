@@ -1,0 +1,42 @@
+{
+  "name": "Probability Theory",
+  "version": "1.0",
+  "author": "pugmire",
+  "parameters": {
+    "V": "[0, 1]",
+    "Gamma": "measure",
+    "theta": 0.0
+  },
+  "forced_laws": {
+    "kolmogorov_normalization": {
+      "forced": true,
+      "proof": "P(Omega)=1 forced by normalized measure"
+    },
+    "kolmogorov_nonnegativity": {
+      "forced": true,
+      "proof": "P(A)>=0 forced by measure definition"
+    },
+    "kolmogorov_additivity": {
+      "forced": true,
+      "proof": "P(A union B)=P(A)+P(B) for disjoint A,B"
+    },
+    "LNC": {
+      "forced": false,
+      "note": "Continuous carrier \u2014 LNC not applicable"
+    },
+    "LEM": {
+      "forced": false,
+      "note": "Not applicable in continuous carrier"
+    },
+    "shannon_entropy": {
+      "forced": true,
+      "proof": "H=-sum(p*log2(p)) is the unique measure satisfying continuity, maximality, and additivity."
+    }
+  },
+  "explicit_failures": [
+    "Cannot represent non-measurable sets (Banach-Tarski)",
+    "Cannot handle conditioning on measure-zero events without extension"
+  ],
+  "falsification_test": "tests/test_carriers.py::test_probability",
+  "notes": "Same carrier [0,1] as fuzzy but different gradient family (measure vs Lukasiewicz)."
+}

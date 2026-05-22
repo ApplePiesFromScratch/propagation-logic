@@ -1,0 +1,25 @@
+{
+  "name": "Your Logic Name",
+  "version": "1.0",
+  "author": "your-github-username",
+  "parameters": {
+    "V": "{0, 1}",
+    "Gamma": "full_bool",
+    "theta": 1.0
+  },
+  "forced_laws": {
+    "LNC": {
+      "forced": true,
+      "proof": "v*(1-v)=0 for all v in V \u2014 derive from carrier arithmetic"
+    },
+    "LEM": {
+      "forced": false,
+      "note": "explain why"
+    }
+  },
+  "explicit_failures": [
+    "Describe at least one pattern this carrier cannot handle"
+  ],
+  "falsification_test": "tests/test_carriers.py::test_your_logic",
+  "notes": "Optional additional context"
+}

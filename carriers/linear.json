@@ -1,0 +1,37 @@
+{
+  "name": "Linear Logic",
+  "version": "1.0",
+  "author": "pugmire",
+  "parameters": {
+    "V": "{0, 1}",
+    "Gamma": "linear",
+    "theta": 1.0
+  },
+  "forced_laws": {
+    "LNC": {
+      "forced": true
+    },
+    "LEM": {
+      "forced": true
+    },
+    "ex_falso": {
+      "forced": true
+    },
+    "resource_consumption": {
+      "forced": true,
+      "proof": "Each pattern consumed on use. Second use raises LinearLogicViolation."
+    },
+    "leibniz": {
+      "forced": false
+    },
+    "FTC": {
+      "forced": false
+    }
+  },
+  "explicit_failures": [
+    "Cannot reuse premises without '!' (bang) modality",
+    "Weakening and contraction structural rules disabled"
+  ],
+  "falsification_test": "tests/test_carriers.py::test_linear",
+  "notes": "Girard (1987). Physical grounding: consumption = Landauer erasure (kT*ln2 per bit)."
+}

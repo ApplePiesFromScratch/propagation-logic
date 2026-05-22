@@ -1,0 +1,41 @@
+{
+  "name": "Paraconsistent Logic (LP)",
+  "version": "1.0",
+  "author": "pugmire",
+  "parameters": {
+    "V": "{0, B, 1}",
+    "Gamma": "full",
+    "theta": 1.0
+  },
+  "forced_laws": {
+    "LNC": {
+      "forced": false,
+      "proof": "B*(1-B)=B (not 0) \u2014 carrier arithmetic in {0,B,1}",
+      "note": "LNC fails for B."
+    },
+    "LEM": {
+      "forced": false,
+      "note": "B is both 0 and 1 simultaneously."
+    },
+    "ex_falso": {
+      "forced": false,
+      "note": "B-and-not-B = B (designated). Explosion blocked."
+    },
+    "leibniz": {
+      "forced": false
+    },
+    "FTC": {
+      "forced": false
+    },
+    "designated_contradiction": {
+      "forced": true,
+      "proof": "B is designated by definition of the carrier V={0,B,1}"
+    }
+  },
+  "explicit_failures": [
+    "Cannot distinguish between 'true contradictions' and 'true true'",
+    "Proof by contradiction fails \u2014 cannot use contradiction to derive False"
+  ],
+  "falsification_test": "tests/test_carriers.py::test_paraconsistent",
+  "notes": "KEY: neg(B)=B. B-and-neg(B)=B (designated, not 0). Ex falso fails."
+}
