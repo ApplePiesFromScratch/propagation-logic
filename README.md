@@ -1,78 +1,27 @@
 # Propagation Logic
 
-**P / G → Q**
+**A Unified Mechanism-First Foundation for Logic, Mathematics, and Physical Reasoning**
 
-Every formal system is completely specified by three parameters:
+One fixed propagation operator `P / G → Q` + three parameters (**V**, **Γ**, **θ**) generates:
+- Classical logic and all major non-classical logics
+- Differential & integral calculus
+- Number systems
+- DRAS (De-Reification Axiom Standard)
 
-| Parameter | Meaning | Examples |
-|-----------|---------|---------|
-| **V** | Value carrier — what values can a statement take? | `{0,1}`, `{0,B,1}`, `[0,1]`, `ℝ`, `ℕ`, `ℂ` |
-| **Γ** | Gradient family — what operations are available? | `full_bool`, `constructive`, `linear`, `differential` |
-| **θ** | Coherence threshold — when is a pattern stable? | `1.0` (boolean), `0.0` (infinitesimal) |
+### Main Guides (2026) — Recommended Reading
 
-Change V, Γ, or θ. Watch the forced laws change. The mechanism stays constant.
+These two documents are the **canonical references**:
 
-```
-Classical logic:     V={0,1},   Γ=full,          θ=1.0
-Intuitionistic:      V={0,1},   Γ=constructive,  θ=1.0
-Paraconsistent (LP): V={0,B,1}, Γ=full,          θ=1.0
-Calculus:            V=ℝ,       Γ=differential,  θ=0.0
-```
+- **[Carrier Set Framework v2](docs/carrier_set_framework_v2.pdf)**  
+  Complete teaching curriculum and carrier-set analysis manual.
 
-## Quick Start
+- **[PL + DRAS + Calculus Unified v1](docs/PL_DRAS_Calculus_Unified_v1.pdf)**  
+  Full mechanism, loaded-history calculus, paradoxes as thermodynamic debt, and self-application.
+
+### Quick Start
 
 ```bash
-git clone https://github.com/ApplePiesFromScratch/propagation-logic
-cd propagation-logic
-python core/pl_unified.py          # 12 sections, 69 assertions
-python core/carrier_tool.py --learn  # interactive guide
+python core/carrier_tool.py --learn          # Interactive tutorial
+python core/carrier_tool.py classical        # Full classical logic report
 python core/carrier_tool.py --diff classical intuitionistic
-```
-
-## Three Paths
-
-**Student** → `docs/curriculum/` → `docs/papers/` → `core/pl_unified.py`
-
-**Researcher** → `docs/papers/` → `carriers/_schema.json` → `CONTRIBUTING.md`
-
-**Builder** → `core/pl_unified.py` → `examples/` → `core/carrier_tool.py` API
-
-## What This Is Not
-
-Not a claim that all formal systems are identical — they force genuinely
-different behaviours. The point: those differences are consequences of
-parameter choices, not mysterious independent metaphysical commitments.
-An axiom is a static boundary condition of a specific propagation regime.
-
-## Repository Structure
-
-```
-core/           The mechanism — stable, tested, 69 assertions
-carriers/       Community carrier definitions (JSON)
-docs/papers/    Foundational papers (PDF)
-docs/curriculum/ Teaching materials
-examples/       Worked examples
-tests/          pytest suite
-frontend/       CarrierExplorer.jsx (interactive parameter space)
-```
-
-## Papers
-
-- [PL DRAS Calculus Unified](docs/papers/PL_DRAS_Calculus_Unified.pdf) — core framework
-- [Identity as Artifact](docs/papers/identity_as_artifact.pdf) — thermodynamic grounding
-- [The Zero-Cost Distinction Fallacy](docs/papers/zero_cost_fallacy.pdf) — foundational argument
-
-## Citation
-
-```bibtex
-@software{pugmire2026pl,
-  author  = {Pugmire, James Alexander},
-  title   = {Propagation Logic},
-  year    = {2026},
-  url     = {https://github.com/ApplePiesFromScratch/propagation-logic},
-  version = {2.0}
-}
-```
-
----
-*The carrier sets the logic. The mechanism sets the rest.*
+python core/pl_unified.py                    # Run all assertions
