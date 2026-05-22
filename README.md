@@ -1,4 +1,3 @@
-markdown
 # Propagation Logic
 
 **One fixed propagation operator. Three parameters. Every formal system.**
@@ -46,3 +45,48 @@ python core/carrier_tool.py --diff classical intuitionistic
 
 # Run the complete validation suite (69 assertions)
 python core/pl_unified.py
+What You Can Do Today
+
+Switch carriers and instantly derive different logics
+Run differential calculus as a direct extension of the same operator
+Explore paradoxes as explicit load profiles (Liar, Gödel, Russell, Yablo)
+Onboard new formal systems via JSON carriers (see carriers/_schema.json)
+Verify every claim computationally — machine-precision calculus, falsifiable boundaries
+
+Repository Layout
+
+carriers/ — JSON definitions for every formal system (classical, paraconsistent, linear, calculus, probability, modal, etc.)
+core/ — Core propagation engine, carrier_tool.py, and unified validation
+docs/ — The two canonical PDFs above
+demos/ — Worked examples (paradoxes, calculus demos, etc.)
+pl/ — Legacy rich implementation from v12 (preserved for historical depth)
+tests/ — Automated falsification suite
+explorations/ — Experimental extensions
+
+Philosophy (in one sentence)
+Code over philosophy. Mechanisms over tautologies. Parsimony over orthodoxy.
+The foundational error of Western formal systems was the zero-cost distinction fallacy — treating the output of an energetically expensive boundary-maintenance process (identity, truth, constants) as a free primitive. Every paradox is the bill arriving. Propagation Logic pays the debt at the propagation layer itself.
+Status & Roadmap
+
+✅ Single unified mechanism proven across logic + calculus + DRAS
+✅ Carrier tool + JSON schema + falsifiability standard
+✅ 69 automated assertions passing
+🔄 Full runtime simulation engine (in progress)
+🔄 Interactive CarrierExplorer web UI
+🔄 Community carrier registry + new formal systems
+
+We are building the Mathesis Universalis that actually runs.
+
+How to Contribute
+See CONTRIBUTING.md — every new carrier must include:
+
+At least one mathematically forced law with proof
+At least one explicit failure mode
+A pytest falsification test
+
+New carriers are welcome. The framework is deliberately designed for rapid, falsifiable extension.
+
+Every major claim in this repository is demonstrated in running code.
+Run python core/pl_unified.py and see for yourself.
+
+Built with the explicit goal of being more falsifiable than what it replaces.
