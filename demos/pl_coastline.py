@@ -10,8 +10,7 @@ The paradox is not a paradox. It is DRAS in action:
 every measurement is a loaded history at a specific scale.
 Treating any single measurement as THE coastline length is
 the zero-cost distinction fallacy applied to geography.
-
-TikTok hook: the number on the map is a reification.
+The number on the map is a reification.
 """
 
 import math
@@ -22,7 +21,7 @@ kB       = 1.380649e-23
 ln2      = math.log(2)
 LANDAUER = kB * 300.0 * ln2
 
-SEP = "=" * 68
+SEP = "═" * 68
 
 # ── DRAS loaded history: q(ε) = L₀ · ε^(1-D) ───────────────────────────────
 # ε:  ruler length (the context/scale parameter)
@@ -79,10 +78,8 @@ def koch_segment(p1, p2, depth):
         return
     dx = p2[0] - p1[0]
     dy = p2[1] - p1[1]
-    # Divide into thirds
     a = (p1[0] + dx/3,     p1[1] + dy/3)
     b = (p1[0] + 2*dx/3,   p1[1] + 2*dy/3)
-    # Peak of the equilateral triangle
     angle = math.pi / 3
     mx = (a[0] + b[0]) / 2 - math.sin(angle) * (b[1] - a[1])
     my = (a[1] + b[1]) / 2 + math.sin(angle) * (b[0] - a[0])
@@ -100,19 +97,11 @@ def measure_curve_with_ruler(points: list, ruler_len: float) -> tuple:
     that makes coastline length ruler-dependent.
     """
     if len(points) < 2: return 0, 0.0
-    steps = 0
-    current = points[0]
-    remaining_points = list(points[1:])
-    current_idx = 0
-
-    # Walk along the curve accumulating ruler lengths
     accumulated = 0.0
     for i in range(len(points) - 1):
         dx = points[i+1][0] - points[i][0]
         dy = points[i+1][1] - points[i][1]
         accumulated += math.sqrt(dx*dx + dy*dy)
-
-    # Rough ruler count
     if accumulated > 0 and ruler_len > 0:
         n_steps = accumulated / ruler_len
         return int(n_steps), n_steps * ruler_len
@@ -156,8 +145,6 @@ def estimate_fractal_dimension(measurements: list) -> float:
     Richardson's method: D = 1 - slope of log(L) vs log(ε).
     Computed from the measurement data itself.
     """
-    # Use log-log regression
-    import math
     log_eps = [math.log(m['ruler_size']) for m in measurements if m['ruler_size'] > 0]
     log_L   = [math.log(m['length'])     for m in measurements if m['ruler_size'] > 0]
     n = len(log_eps)
@@ -167,7 +154,6 @@ def estimate_fractal_dimension(measurements: list) -> float:
     sxx = sum(x*x for x in log_eps)
     sxy = sum(x*y for x,y in zip(log_eps, log_L))
     slope = (n*sxy - sx*sy) / (n*sxx - sx*sx)
-    # D = 1 - slope (since L ∝ ε^(1-D))
     return 1.0 - slope
 
 
@@ -180,9 +166,6 @@ def formalize_paradox():
     print(SEP)
 
     print("""
-THE HOOK (one sentence):
-  The UK coastline is 17,820 km, 28,000 km, and infinite — all correct.
-
 THE CLAIM:
   "The length of the coastline" is not a fact about the coastline.
   It is a fact about the coastline AND the ruler AND the measurer.
@@ -222,7 +205,6 @@ THE DRAS FORMALIZATION:
     # ── UK coastline as DRAS loaded history ───────────────────────────────
     print(f"\n\nCOMPUTED: UK Coastline as DRAS loaded history\n")
 
-    # UK coastline fractal dimension ≈ 1.25 (Richardson 1961)
     D_uk  = 1.25
     L0_uk = 17820.0   # km at ~50km ruler (CIA World Factbook)
     eps0  = 50.0      # km reference ruler
@@ -279,74 +261,32 @@ THE DRAS FORMALIZATION:
   the Problem of Evil. Demands that cannot be simultaneously satisfied.
 """)
 
-    # ── The DRAS prediction ───────────────────────────────────────────────
-    print("THE DRAS PREDICTION (falsifiable)\n")
-
-    print(f"  Claim: every physical measurement of a natural boundary is")
-    print(f"  a DRAS loaded history L(ε), not a constant.")
-    print(f"\n  Prediction 1: any two countries measuring their shared border")
-    print(f"  at different scales will report different lengths — both correct.")
-    eps_A, eps_B = 10.0, 1.0
-    L_A = uk.at_scale(eps_A)
-    L_B = uk.at_scale(eps_B)
-    ratio = L_B / L_A
-    print(f"  At ε=10km: L={L_A:,.0f}km. At ε=1km: L={L_B:,.0f}km.")
-    print(f"  Ratio: {ratio:.2f}× — this matches Richardson's empirical data. ✓")
-
-    print(f"\n  Prediction 2: the fractal dimension D determines how fast")
-    print(f"  the measurement changes with ruler size.")
-    print(f"  UK coast D≈1.25: dL/dε at ε=50km = {uk.gradient(50):.1f} km/km")
-    print(f"  Smooth circle D=1: dL/dε = 0 (ruler-independent). True by construction. ✓")
-
-    print(f"\n  Prediction 3: measuring at finer scales costs exponentially more.")
-    print(f"  Landauer cost doubles for each halving of ruler size.")
-    for eps in [50.0, 25.0, 12.5, 6.25]:
-        cost = uk.landauer_cost(eps / 50.0) if eps < 50 else LANDAUER
-        print(f"  ε={eps:5.2f}km: {cost:.3e} J")
-    print(f"  ✓ Perfect coastline measurement has infinite thermodynamic cost.")
-    print(f"    This is why no map is the territory.")
-
-    # ── TikTok script ─────────────────────────────────────────────────────
-    print(f"\n{SEP}")
-    print("TIKTOK SCRIPT (60 seconds)")
+    # ── Brief explainer ───────────────────────────────────────────────────
+    print(SEP)
+    print("BRIEF EXPLAINER")
     print(SEP)
     print(f"""
-[HOOK — 0-5s]
-"The length of the UK coastline is 17,820 km.
- It's also 28,000 km. It's also infinite.
- These are all correct. Here's why."
+The UK coastline is 17,820 km around when you use a 50km ruler.
+With a 10km ruler: 37,000 km. With a 1km ruler: nearly 100,000 km.
+As the ruler gets smaller, the length gets bigger — without limit.
 
-[SETUP — 5-20s]
-"Take a ruler and walk it around the coastline of Britain.
- With a 50km ruler you get 17,820 km — that's the official number.
- With a 10km ruler: 37,000 km.
- With a 1km ruler: nearly 100,000 km.
- As the ruler gets smaller the length gets bigger — without limit.
+This is not an error. This is what coastlines actually are.
 
- This is not an error. This is what coastlines actually are."
+The length follows: L = L₀ × ε^(1-D)
+where ε is ruler size and D is the fractal dimension (~1.25 for Britain).
 
-[THE FORMULA — 20-35s]
-"The length follows this formula: L = L₀ × ε^(1-D)
- where ε is ruler size and D is the fractal dimension — about 1.25 for Britain.
- There is no ruler-independent length.
- The number on the map is not a fact about the coastline.
- It is a fact about the coastline AND the ruler."
+There is no ruler-independent length. The number on the map is not
+a fact about the coastline — it is a fact about the coastline AND the ruler.
 
-[THE PL TWIST — 35-50s]
-"Every physical measurement is like this.
- The mass of the electron changes with energy scale.
- The temperature of this coffee changes with how you measure it.
- There are no constants — only measurements at specific scales.
- When you treat any single measurement as THE answer,
- you've made an assumption so basic you forgot you made it."
+Every physical measurement is like this.
+The mass of the electron changes with energy scale.
+The temperature of this coffee changes with how you measure it.
+There are no constants — only measurements at specific scales.
+When you treat any single measurement as THE answer,
+you have made an assumption so basic you forgot you made it.
 
-[PUNCHLINE — 50-60s]
-"The UK is not 17,820 km around.
- The UK is 17,820 km around when you use a 50km ruler.
- The map is not lying. The map is just a loaded history
- at a specific scale. Which is all any measurement ever is.
-
- [caption: the zero-cost distinction fallacy, applied to geography]"
+This is the zero-cost distinction fallacy applied to geography.
+Propagation Logic makes the cost explicit.
 """)
 
     # ── Mathematical summary ──────────────────────────────────────────────
@@ -360,7 +300,7 @@ Gradient:   G_Richardson: (L, ε) → L₀ · ε^(1-D)
 Load:       L(ε) = measurement cost at scale ε
             = k_BT ln2 · log₂(1/ε)  [Landauer]
 
-DRAS Axiom L applied:
+DRAS Axiom applied:
   "Coastline length" is not a quantity q.
   It is a loaded history q(ε) = L₀ · ε^(1-D).
   Any statement that drops the ε is a reification.
