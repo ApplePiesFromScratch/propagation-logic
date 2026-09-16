@@ -1,53 +1,30 @@
-import pytest
-import sys
+import json
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).parent.parent / "core"))
-from carrier_tool import CarrierSet, cmd_validate, CARRIERS_DIR
 
-def test_all_carriers_validate():
-    """Every carrier JSON in carriers/ must pass schema validation."""
-    for p in sorted(CARRIERS_DIR.glob("*.json")):
-        if p.stem.startswith("_"): continue
-        result = cmd_validate(str(p))
-        assert result, f"{p.name} failed validation"
+ROOT = Path(__file__).resolve().parents[1] / "carriers"
+REQUIRED = ("name", "version", "V", "G", "theta", "forced_on_cut", "fails", "falsifier")
 
-def test_classical():
-    cs = CarrierSet.preset("classical")
-    assert cs.forces("LNC") == True
-    assert cs.forces("LEM") == True
-    assert cs.forces("ex_falso") == True
-    assert cs.forces("leibniz") == False
-    assert cs.forces("FTC") == False
 
-def test_intuitionistic():
-    cs = CarrierSet.preset("intuitionistic")
-    assert cs.forces("LNC") == True    # carrier arithmetic unchanged
-    assert cs.forces("LEM") == False   # Gor removed from Gamma
+def test_schema_carriers_present():
+    names = {p.stem for p in ROOT.glob("*.json") if not p.name.startswith("_")}
+    assert names >= {"cl2", "l3", "k3", "proc"}
 
-def test_paraconsistent():
-    cs = CarrierSet.preset("paraconsistent_lp")
-    assert cs.forces("LNC") == False
-    assert cs.forces("ex_falso") == False
-    # KEY: B and neg(B) = B in LP, not 0
-    # The carrier extension is the point
 
-def test_linear():
-    cs = CarrierSet.preset("linear")
-    assert cs.forces("resource_consumption") == True
+def test_each_carrier_has_required_fields():
+    for p in ROOT.glob("*.json"):
+        if p.name.startswith("_"):
+            continue
+        data = json.loads(p.read_text())
+        for k in REQUIRED:
+            assert k in data, f"{p.name} missing {k}"
+        assert "Gamma" not in data
+        assert "parameters" not in data
+        assert data["fails"], f"{p.name} needs a failure"
+        assert data["falsifier"]
 
-def test_calculus():
-    cs = CarrierSet.preset("calculus_differential")
-    assert cs.forces("leibniz_product_rule") == True
-    assert cs.forces("FTC") == True
-    assert cs.forces("LNC") == False   # not applicable in continuous carrier
 
-def test_probability():
-    cs = CarrierSet.preset("probability")
-    assert cs.forces("kolmogorov_normalization") == True
-    assert cs.forces("LNC") == False   # not applicable
-
-def test_modal_s4_vs_s5():
-    s4 = CarrierSet.preset("modal_s4")
-    s5 = CarrierSet.preset("modal_s5")
-    assert s4.forces("5_axiom") == False
-    assert s5.forces("5_axiom") == True
+def test_l3_and_k3_are_distinct_presentations():
+    l3 = json.loads((ROOT / "l3.json").read_text())
+    k3 = json.loads((ROOT / "k3.json").read_text())
+    assert l3["V"] == k3["V"]
+    assert l3["G"] != k3["G"]

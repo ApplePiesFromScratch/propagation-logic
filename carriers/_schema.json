@@ -1,83 +1,25 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "title": "Propagation Logic Carrier Definition",
-  "description": "Schema for carrier definitions in the propagation-logic repository",
+  "title": "PL v0.3 carrier presentation",
+  "description": "A named cut. Not an essence. G not Gamma.",
   "type": "object",
-  "required": [
-    "name",
-    "version",
-    "parameters",
-    "forced_laws",
-    "explicit_failures",
-    "falsification_test"
-  ],
+  "required": ["name", "version", "V", "G", "theta", "forced_on_cut", "fails", "falsifier"],
   "properties": {
-    "name": {
-      "type": "string"
-    },
-    "version": {
-      "type": "string"
-    },
-    "author": {
-      "type": "string"
-    },
-    "parameters": {
-      "type": "object",
-      "required": [
-        "V",
-        "Gamma",
-        "theta"
-      ],
-      "properties": {
-        "V": {
-          "type": "string",
-          "description": "Value carrier, e.g. '{0,1}' or '[0,1]' or 'R'"
-        },
-        "Gamma": {
-          "type": "string",
-          "description": "Gradient family name"
-        },
-        "theta": {
-          "type": "number",
-          "description": "Coherence threshold"
-        }
-      }
-    },
-    "forced_laws": {
-      "type": "object",
-      "description": "Laws forced by carrier arithmetic. At least one must have a proof.",
-      "additionalProperties": {
-        "type": "object",
-        "required": [
-          "forced"
-        ],
-        "properties": {
-          "forced": {
-            "type": "boolean"
-          },
-          "proof": {
-            "type": "string"
-          },
-          "note": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "explicit_failures": {
+    "name": {"type": "string"},
+    "version": {"type": "string"},
+    "V": {"type": "string", "description": "alphabet of this presentation"},
+    "G": {"type": "string", "description": "declared operations / isolation"},
+    "theta": {"type": "string", "description": "admission / refusal / budget"},
+    "forced_on_cut": {
       "type": "array",
-      "description": "At least one boundary this carrier cannot handle.",
+      "items": {"type": "string"}
+    },
+    "fails": {
+      "type": "array",
       "minItems": 1,
-      "items": {
-        "type": "string"
-      }
+      "items": {"type": "string"}
     },
-    "falsification_test": {
-      "type": "string",
-      "description": "pytest path, e.g. tests/test_carriers.py::test_classical"
-    },
-    "notes": {
-      "type": "string"
-    }
+    "falsifier": {"type": "string"},
+    "notes": {"type": "string"}
   }
 }

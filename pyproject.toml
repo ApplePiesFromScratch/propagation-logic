@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "propagation-logic"
+version = "0.3.0"
+description = "P/G→Q presentations: exact-Q rate, certificates, registered μ, unified ledger"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+
+[project.scripts]
+pl = "pl.cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[tool.setuptools.packages.find]
+include = ["pl*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
