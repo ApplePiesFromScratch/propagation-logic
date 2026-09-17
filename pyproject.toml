@@ -1,23 +1,10 @@
-[build-system]
-requires = ["setuptools>=68"]
-build-backend = "setuptools.build_meta"
-
 [project]
-name = "propagation-logic"
-version = "0.3.0"
-description = "P/G→Q presentations: exact-Q rate, certificates, registered μ, unified ledger"
-readme = "README.md"
+name = "carriersets"
+version = "1.0.0"
+description = "85 formal systems as P/G->Q carriers, with 92 executable checks and a self-computed paid fraction"
 requires-python = ">=3.10"
+dependencies = ["sympy>=1.12", "numpy>=1.26"]
 license = {text = "MIT"}
 
-[project.scripts]
-pl = "pl.cli:main"
-
-[project.optional-dependencies]
-dev = ["pytest>=7"]
-
-[tool.setuptools.packages.find]
-include = ["pl*"]
-
-[tool.pytest.ini_options]
-testpaths = ["tests"]
+[tool.setuptools]
+packages = ["carrierlib", "carrierlib.checks", "carriers"]
